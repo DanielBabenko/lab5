@@ -6,10 +6,6 @@ import org.example.lab5.parserFromJson.Root;
 import org.example.lab5.workWithCollections.*;
 import org.example.lab5.parserToJson.ParserToJson;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -21,17 +17,15 @@ public class App {
     public static void main(String[] args) throws NullX, InvalidFieldY {
 
         Root root = new Root();
-        HashSet<LabWork> labs = new HashSet<>();
-        root.setLabs(labs);
-
 
         //to Json
         ParserToJson inJson = new ParserToJson();
-        LabWork lab1 = inJson.addToList("Rim", 123, 12, "EASY", 11, 12.3, "Nikita", "GREEN", 224, "23-05-2004");
-        LabWork lab2 = inJson.addToList("Rim21", 123, 121, "EASY", 11, 12.3, "George", "GREEN", 224, "23-05-2004");
-        LabWork lab3 = inJson.addToList("Ri342m21", 123423, 4312, "EASY", 11, 12.3, "Daniel", "GREEN", 224, "23-05-2004");
 
-        ElementCommand addEl = new AddNewElementCommand(root);
+        LabWork lab1 = inJson.createLabWork("Rim", 123, 12, "EASY", 11, 12.3, "Nikita", "GREEN", 224, "23-05-2004");
+        LabWork lab2 = inJson.createLabWork("Rim21", 123, 121, "EASY", 11, 12.3, "George", "GREEN", 224, "23-05-2004");
+        LabWork lab3 = inJson.createLabWork("Ri342m21", 123423, 4312, "EASY", 11, 12.3, "Daniel", "GREEN", 224, "23-05-2004");
+
+        Command addEl = new AddNewElementCommand(root);
         Add a = new Add(addEl);
 
         Command showLabs = new ShowTheCollectionCommand(root);
@@ -67,6 +61,9 @@ public class App {
         a.add(lab1);
         a.add(lab2);
         addMax.addIfMax(lab3);
+
+        Map<String, Command> commands = new HashMap<>();
+        commands.put(clearLabs)
 
         //greater.removeGreater(lab2);
         //lower.removeLower(lab2);

@@ -1,8 +1,10 @@
 package org.example.lab5;
 
-import org.example.lab5.features.Coordinates;
-import org.example.lab5.features.Person;
-import org.example.lab5.features.enums.Difficulty;
+import org.example.lab5.entity.Coordinates;
+import org.example.lab5.entity.Person;
+import org.example.lab5.entity.enums.Difficulty;
+
+import java.util.Objects;
 
 /**
  * The LabWork is main object for console App
@@ -10,7 +12,7 @@ import org.example.lab5.features.enums.Difficulty;
 
 public class LabWork {
 
-    private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates = new Coordinates(); //Поле не может быть null
     // private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -19,22 +21,21 @@ public class LabWork {
     private Difficulty difficulty; //Поле может быть null
     private Person author; //Поле не может быть null
 
-    private static int idCounter = 1;
+    private static long idCounter = 1;
 
-    public static synchronized String createID()
-    {
-        return String.valueOf(idCounter++);
+    public static synchronized long createID() {
+        return idCounter++;
     }
 
 
     public LabWork(String name, int minimalPoint, int tunedInWorks, Difficulty difficulty, Coordinates coordinates, Person author) {
-        this.id = Integer.parseInt(createID());
-        this.name = name;
-        this.coordinates = coordinates;
+        this.id = idCounter;
+        this.name = Objects.requireNonNull(name);
+        this.coordinates = Objects.requireNonNull(coordinates);
         this.minimalPoint = minimalPoint;
-        this.author = author;
+        this.author = Objects.requireNonNull(author);
         this.tunedInWorks = tunedInWorks; // I do not understand what is it
-        this.difficulty = difficulty;
+        this.difficulty = Objects.requireNonNull(difficulty);
 
         // set up automatically
         //this.creationDate = ZonedDateTime.now();
@@ -48,11 +49,7 @@ public class LabWork {
         return difficulty;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 
@@ -96,4 +93,30 @@ public class LabWork {
         return this.tunedInWorks;
     }
 
+    @Override
+    public String toString() {
+        return "LabWork{" +
+                "id:" + id + "\n" +
+                ", name:'" + name + '\'' +
+                ", coordinates" + " [x=" + getCoordinates().getX() + ", y=" + getCoordinates().getY() + "]" +
+                ", minimalPoint=" + minimalPoint +
+                ", tunedInWorks=" + tunedInWorks +
+                ", difficulty=" + difficulty +
+                ", author=" + author +
+                '}';
+    }
 }
+/*
+System.out.println("id:" + lab.getId());
+            System.out.println("name:" + lab.getName());
+            System.out.println("coordinates: [x=" + lab.getCoordinates().getX() +
+                    ", y=" + lab.getCoordinates().getY() + "]");
+            System.out.println("minimalPoint:" + lab.getMinimalPoint());
+            System.out.println("tunedInWorks:" + lab.getTunedInWorks());
+            System.out.println("difficulty:" + lab.getDifficulty());
+            System.out.println("author: [\nname=" + lab.getAuthor().getName() +
+                    ", \nbirthday=" + lab.getAuthor().getBirthday() +
+                    "\nheight=" + lab.getAuthor().getHeight() +
+                    "\neyeColor=" + lab.getAuthor().getEyeColor() + "\n]");
+            System.out.println("---------------------");
+ */

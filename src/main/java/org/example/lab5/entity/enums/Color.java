@@ -1,4 +1,4 @@
-package org.example.lab5.features.enums;
+package org.example.lab5.entity.enums;
 
 public enum Color {
     GREEN,

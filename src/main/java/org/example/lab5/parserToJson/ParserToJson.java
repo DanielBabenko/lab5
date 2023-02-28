@@ -4,37 +4,50 @@ import com.google.gson.Gson;
 import org.example.lab5.LabWork;
 import org.example.lab5.exceptions.InvalidFieldY;
 import org.example.lab5.exceptions.NullX;
-import org.example.lab5.features.Coordinates;
-import org.example.lab5.features.Person;
-import org.example.lab5.features.enums.Color;
-import org.example.lab5.features.enums.Difficulty;
+import org.example.lab5.entity.Coordinates;
+import org.example.lab5.entity.Person;
+import org.example.lab5.entity.enums.Color;
+import org.example.lab5.entity.enums.Difficulty;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.HashSet;
+import java.io.*;
+import java.util.Set;
 
 public class ParserToJson {
 
-    public LabWork addToList(String name, int mP, int tIW, String difficulty, int x, double y, String nameAuthor, String color, float height, String bd) throws NullX, InvalidFieldY {
+    public LabWork createLabWork(String name,
+                                 int mP,
+                                 int tIW,
+                                 String difficulty,
+                                 int x,
+                                 double y,
+                                 String nameAuthor,
+                                 String color,
+                                 float height,
+                                 String bd)
+            throws NullX, InvalidFieldY {
         LabWork lab = new LabWork(name, mP, tIW, Difficulty.valueOf(difficulty), new Coordinates(x, y), new Person(nameAuthor, Color.valueOf(color), height, bd));
         return lab;
     }
 
-    public void serialization(HashSet<LabWork> labs){
+    // fileName = "notes.json"
+    public void serialization(Set<LabWork> labs, String fileName) {
         Gson gson = new Gson();
-
         String result = gson.toJson(labs);
-
-        try (FileOutputStream out = new FileOutputStream("notes.json", true);
-
-             BufferedOutputStream bos = new BufferedOutputStream(out)) {
-            // перевод строки в байты
-            byte[] buffer = result.getBytes();
-            bos.write(buffer, 0, buffer.length);
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(result);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+
+//        try (FileOutputStream out = new FileOutputStream(fileName, true);
+//
+//             BufferedOutputStream bos = new BufferedOutputStream(out)) {
+//            // перевод строки в байты
+//            byte[] buffer = result.getBytes();
+//            bos.write(buffer, 0, buffer.length);
+//
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
     }
 }

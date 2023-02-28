@@ -1,12 +1,17 @@
 package org.example.lab5.parserFromJson;
 
 import org.example.lab5.LabWork;
-import org.example.lab5.features.Person;
+import org.example.lab5.entity.Person;
 
 import java.util.*;
 
 public class Root {
-    private HashSet<LabWork> labs;
+
+    private Set<LabWork> labWorkSet;
+
+    public Root() {
+        this.labWorkSet = new HashSet<>();
+    }
 
     Comparator<LabWork> compareByMinPoint = new Comparator<LabWork>() {
         @Override
@@ -25,96 +30,116 @@ public class Root {
     Comparator<LabWork> compareByID = new Comparator<LabWork>() {
         @Override
         public int compare(LabWork o1, LabWork o2) {
-            return o1.getId()-o2.getId();
+            return (int) (o1.getId()-o2.getId());
         }
     };
 
-    public void setLabs(HashSet<LabWork> labs) {
-        this.labs = labs;
+    public void setLabWorkSet(HashSet<LabWork> labWorkSet) {
+        this.labWorkSet = labWorkSet;
     }
 
-    public HashSet<LabWork> getLabs() {
-        return labs;
+    public Set<LabWork> getLabWorkSet() {
+        return labWorkSet;
     }
 
     @Override
     public String toString() {
         return "Root{" +
-                ", labs=" + this.labs +
+                ", labs=" + this.labWorkSet +
                 '}';
     }
 
-    public void show(){
-        List<LabWork> labs2 = new ArrayList<>();
-        for (LabWork lab : labs) {
-            labs2.add(lab);
-        }
-        labs2.sort(compareByID);
-        for (LabWork lab : labs2) {
-            System.out.println("id:" + lab.getId());
-            System.out.println("name:" + lab.getName());
-            System.out.println("coordinates: [x=" + lab.getCoordinates().getX() +
-                    ", y=" + lab.getCoordinates().getY() + "]");
-            System.out.println("minimalPoint:" + lab.getMinimalPoint());
-            System.out.println("tunedInWorks:" + lab.getTunedInWorks());
-            System.out.println("difficulty:" + lab.getDifficulty());
-            System.out.println("author: [\nname=" + lab.getAuthor().getName() +
-                    ", \nbirthday=" + lab.getAuthor().getBirthday() +
-                    "\nheight=" + lab.getAuthor().getHeight() +
-                    "\neyeColor=" + lab.getAuthor().getEyeColor() + "\n]");
-            System.out.println("---------------------");
+    public void show() {
+//        List<LabWork> labWorkList = new ArrayList<>();
+//        for (LabWork lab : labs) {
+//            labWorkList.add(lab);
+//        }
+
+        List<LabWork> labWorkList = new ArrayList<>();
+        labWorkList.addAll(labWorkSet);
+
+        labWorkList.sort(compareByID);
+        for (LabWork lab : labWorkList) {
+//            System.out.println("id:" + lab.getId());
+//            System.out.println("name:" + lab.getName());
+//            System.out.println("coordinates: [x=" + lab.getCoordinates().getX() +
+//                    ", y=" + lab.getCoordinates().getY() + "]");
+//            System.out.println("minimalPoint:" + lab.getMinimalPoint());
+//            System.out.println("tunedInWorks:" + lab.getTunedInWorks());
+//            System.out.println("difficulty:" + lab.getDifficulty());
+//            System.out.println("author: [\nname=" + lab.getAuthor().getName() +
+//                    ", \nbirthday=" + lab.getAuthor().getBirthday() +
+//                    "\nheight=" + lab.getAuthor().getHeight() +
+//                    "\neyeColor=" + lab.getAuthor().getEyeColor() + "\n]");
+//            System.out.println("---------------------");
+            System.out.println(lab);
         }
     }
 
-    public void addEl(LabWork e) {
-        labs.add(e);
+    public void addElement(LabWork e) {
+        labWorkSet.add(e);
     }
 
-    public void removeEl(int id){
+    public void removeEl(int id) {
         int flag = 0;
-        for (LabWork lab : labs) {
+        for (LabWork lab : labWorkSet) {
             if (lab.getId() == id){
-                labs.remove(lab);
+                labWorkSet.remove(lab);
                 flag = 1;
                 break;
             }
         }
-
         if (flag == 0){
             System.out.println("Элемент с данным id не найден!");
         }
     }
 
     public void clearCollection(){
-        labs.clear();
+        labWorkSet.clear();
     }
 
     public void printUniqueTunedInWorks(){
         Set<Integer> unique = new HashSet<>();
-        for (LabWork lab: labs){
+        for (LabWork lab: labWorkSet){
             unique.add(lab.getTunedInWorks());
         }
-        for (int el: unique){
-            System.out.print(el+" ");
-        }
+
+//        unique.forEach(System.out::println);
+
+//        for (int el: unique){
+//            System.out.print(el+" ");
+//        }
+
+        printCollection(unique);
         System.out.println("\n");
     }
 
-    public void printFieldAscendingTunedInWorks(){
+    private void printCollection(Collection<Integer> collection) {
+        for (Integer el: collection){
+            System.out.print(el+" ");
+        }
+    }
+
+    public void printFieldAscendingTunedInWorks() {
         List<Integer> tunedInWorks = new LinkedList<>();
-        for (LabWork lab: labs){
+        for (LabWork lab: labWorkSet){
             tunedInWorks.add(lab.getTunedInWorks());
         }
         Collections.sort(tunedInWorks);
-        for (int el: tunedInWorks){
-            System.out.print(el+" ");
-        }
+
+        printCollection(tunedInWorks);
+
+//        for (int el: tunedInWorks){
+//            System.out.print(el+" ");
+//        }
+
         System.out.println("\n");
     }
 
-    public void maxByAuthor(){
+    public void maxByAuthor() {
         List<Person> authors = new ArrayList<>();
-        for (LabWork lab: labs){
+        // вывести в метод
+        for (LabWork lab: labWorkSet){
             authors.add(lab.getAuthor());
         }
         Comparator<Person> compareByName = new Comparator<Person>() {
@@ -125,54 +150,63 @@ public class Root {
         };
         Person greatest = Collections.max(authors,compareByName);
         System.out.println(" ----- Автор -----");
-        System.out.println("Ымя: " + greatest.getName());
+        System.out.println("Имя: " + greatest.getName());
         System.out.println("Дата рождения: " + greatest.getBirthday());
         System.out.println("Рост: " + greatest.getHeight());
         System.out.println("Цвет глаз: " + greatest.getEyeColor());
     }
 
-    public void addIfMax(LabWork e){
-        LabWork maximum = Collections.max(labs,compareByMinPoint);
+    public void addIfMax(LabWork e) {
+        LabWork maximum = Collections.max(labWorkSet,compareByMinPoint);
         if ((e.getMinimalPoint() - maximum.getMinimalPoint()) > 0){
-            labs.add(e);
+            labWorkSet.add(e);
         }
     }
 
     public void removeGreater(LabWork e){
         List<LabWork> labWorks = new LinkedList<>();
-        for (LabWork lab:labs){
+        for (LabWork lab: labWorkSet){
             labWorks.add(lab);
         }
         labWorks.sort(compareByMinPointReverse);
         for (LabWork el:labWorks) {
             if(el == e){break;}
-            labs.remove(el);
+            labWorkSet.remove(el);
         }
     }
 
     public void removeLower(LabWork e){
         List<LabWork> labWorks = new LinkedList<>();
-        for (LabWork lab:labs){
+        for (LabWork lab: labWorkSet){
             labWorks.add(lab);
         }
         labWorks.sort(compareByMinPoint);
         for (LabWork el:labWorks) {
             if(el == e){break;}
-            labs.remove(el);
+            labWorkSet.remove(el);
         }
     }
 
-    public void update(int id, LabWork e){
-        int flag = 0;
-        for (LabWork lab:labs){
-            if (lab.getId() == id){
-                labs.remove(lab);
-                labs.add(e);
-                e.setId(id);
-                flag = 1;
+    public void update(int id, LabWork e) {
+        boolean flag = true;
+        for (LabWork lab: labWorkSet) {
+            if (lab.getId() == id) {
+
+                lab.setName(e.getName());
+                lab.setAuthor(e.getAuthor());
+                lab.setCoordinates(e.getCoordinates());
+                lab.setDifficulty(e.getDifficulty());
+                lab.setMinimalPoint(e.getMinimalPoint());
+                lab.setTunedInWorks(e.getTunedInWorks());
+                flag = false;
+
+//                labWorkSet.remove(lab);
+//                labWorkSet.add(e);
+////                e.setId(id);
                 break;
             }
-            if (flag == 0){
+
+            if (flag) {
                 System.out.println(" Элемент с данным ID отсутствует ");
             }
         }

@@ -13,6 +13,6 @@ public class AddNewElementCommand implements ElementCommand {
     public void execute() {}
 
     public void execute(LabWork e) {
-        root.addEl(e);
+        root.addElement(e);
     }
 }

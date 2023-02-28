@@ -1,4 +1,4 @@
-package org.example.lab5.features;
+package org.example.lab5.entity;
 
 import org.example.lab5.exceptions.InvalidFieldY;
 import org.example.lab5.exceptions.NullX;
@@ -10,8 +10,7 @@ public class Coordinates {
     public Coordinates() {
     }
 
-    public Coordinates(Integer x, Double y)
-            throws NullX, InvalidFieldY {
+    public Coordinates(Integer x, Double y) throws NullX, InvalidFieldY {
         if (x == null) {
             throw new NullX("Field X can not be NULL!");
         } else {
