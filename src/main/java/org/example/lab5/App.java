@@ -78,18 +78,20 @@ public class App {
         commands.put("show",s);
         commands.put("max_by_author",author);
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        /*try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String line;
             for(Map.Entry<String, Invoker> entry: commands.entrySet()) {
                 String key = entry.getKey();
                 if ((line = reader.readLine()).equals(key)){
-                    entry.getValue().doSomething();
+                    entry.getValue().doCommand();
                     break;
                 }
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+
+        s.show();
     }
 }

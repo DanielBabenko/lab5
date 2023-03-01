@@ -15,7 +15,4 @@ public class RemoveElementByIDCommand implements IDCommand {
     public void execute(int id) {
         root.removeEl(id);
     }
-
-    @Override
-    public void execute() {}
 }

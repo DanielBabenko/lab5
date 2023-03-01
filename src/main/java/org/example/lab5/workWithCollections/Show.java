@@ -17,9 +17,4 @@ public class Show extends Invoker{
     public void doCommand() {
         showTheSummary.execute();
     }
-
-    @Override
-    public void doSomething() {
-
-    }
 }

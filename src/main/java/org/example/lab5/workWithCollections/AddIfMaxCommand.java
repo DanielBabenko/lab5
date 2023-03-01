@@ -12,9 +12,6 @@ public class AddIfMaxCommand implements ElementCommand {
     }
 
     @Override
-    public void execute() {}
-
-    @Override
     public void execute(LabWork e) {
         root.addIfMax(e);
     }

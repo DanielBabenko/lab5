@@ -12,10 +12,6 @@ public class RemoveLowerElementCommand implements ElementCommand {
     }
 
     @Override
-    public void execute() {
-    }
-
-    @Override
     public void execute(LabWork e) {
         root.removeLower(e);
     }

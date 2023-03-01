@@ -14,7 +14,7 @@ public class AuthorMaximization extends Invoker{
     }
 
     @Override
-    public void doSomething() {
-        maxAuthorCommand.execute();
+    public void doCommand() {
+
     }
 }

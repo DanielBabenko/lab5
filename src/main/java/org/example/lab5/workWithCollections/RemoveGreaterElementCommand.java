@@ -10,7 +10,6 @@ public class RemoveGreaterElementCommand implements ElementCommand {
         this.root = root;
     }
 
-    @Override
     public void execute() {}
 
     @Override
