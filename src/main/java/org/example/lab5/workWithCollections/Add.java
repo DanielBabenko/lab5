@@ -6,9 +6,9 @@ import org.example.lab5.LabWork;
 
 public class Add {
 
-    private Command add;
+    private ElementCommand add;
 
-    public Add(Command add){
+    public Add(ElementCommand add){
         this.add = add;
     }
 

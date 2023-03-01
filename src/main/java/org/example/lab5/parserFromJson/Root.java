@@ -150,7 +150,7 @@ public class Root {
         };
         Person greatest = Collections.max(authors,compareByName);
         System.out.println(" ----- Автор -----");
-        System.out.println("Имя: " + greatest.getName());
+        System.out.println("Ымя: " + greatest.getName());
         System.out.println("Дата рождения: " + greatest.getBirthday());
         System.out.println("Рост: " + greatest.getHeight());
         System.out.println("Цвет глаз: " + greatest.getEyeColor());

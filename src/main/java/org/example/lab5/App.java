@@ -6,6 +6,9 @@ import org.example.lab5.parserFromJson.Root;
 import org.example.lab5.workWithCollections.*;
 import org.example.lab5.parserToJson.ParserToJson;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -25,7 +28,7 @@ public class App {
         LabWork lab2 = inJson.createLabWork("Rim21", 123, 121, "EASY", 11, 12.3, "George", "GREEN", 224, "23-05-2004");
         LabWork lab3 = inJson.createLabWork("Ri342m21", 123423, 4312, "EASY", 11, 12.3, "Daniel", "GREEN", 224, "23-05-2004");
 
-        Command addEl = new AddNewElementCommand(root);
+        ElementCommand addEl = new AddNewElementCommand(root);
         Add a = new Add(addEl);
 
         Command showLabs = new ShowTheCollectionCommand(root);
@@ -62,9 +65,6 @@ public class App {
         a.add(lab2);
         addMax.addIfMax(lab3);
 
-        Map<String, Command> commands = new HashMap<>();
-        commands.put(clearLabs)
-
         //greater.removeGreater(lab2);
         //lower.removeLower(lab2);
 
@@ -74,7 +74,7 @@ public class App {
         //sort.printFieldAscendingTunedInWorks();
         //author.maxByAuthor();
 
-        /* Map<String, Invoker> commands = new HashMap<>();
+        Map<String, Invoker> commands = new HashMap<>();
         commands.put("show",s);
         commands.put("max_by_author",author);
 
@@ -90,6 +90,6 @@ public class App {
 
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
+        }
     }
 }

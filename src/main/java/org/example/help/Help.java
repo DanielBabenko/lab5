@@ -14,7 +14,7 @@ public class Help extends Invoker {
     }
 
     @Override
-    public void doSomething() {
+    public void doCommand() {
         getHelpCommand.execute();
     }
 }

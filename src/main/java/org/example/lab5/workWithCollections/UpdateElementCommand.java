@@ -12,8 +12,6 @@ public class UpdateElementCommand implements UpdateCommand {
         this.root = root;
     }
 
-    public void execute() {}
-
     @Override
     public void execute(int id, LabWork e) {
         root.update(id,e);

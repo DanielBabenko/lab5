@@ -97,12 +97,17 @@ public class LabWork {
     public String toString() {
         return "LabWork{" +
                 "id:" + id + "\n" +
-                ", name:'" + name + '\'' +
-                ", coordinates" + " [x=" + getCoordinates().getX() + ", y=" + getCoordinates().getY() + "]" +
-                ", minimalPoint=" + minimalPoint +
-                ", tunedInWorks=" + tunedInWorks +
-                ", difficulty=" + difficulty +
-                ", author=" + author +
+                ", name:'" + name + "\n" +
+                ", coordinates:" + "\n" +
+                " [x=" + getCoordinates().getX() + "\n" +
+                ", y=" + getCoordinates().getY() + "]" + "\n" +
+                ", minimalPoint=" + minimalPoint + "\n" +
+                ", tunedInWorks=" + tunedInWorks + "\n" +
+                ", difficulty=" + difficulty + "\n" +
+                ", author=[" + author.getName() + "\n" +
+                ", birthday=" + author.getBirthday()+ "\n" +
+                ", height=" + author.getHeight()+ "\n" +
+                ", eyeColor=" + author.getEyeColor()+ "]\n" +
                 '}';
     }
 }
