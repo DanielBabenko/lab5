@@ -1,7 +1,7 @@
 package org.example.help;
 
-public class Instruction {
-    public Instruction(){}
+public class Info {
+    public Info(){}
     public void getInstruction(){
         System.out.println("Доступные  команды\n" +
                 "help : вывести справку по доступным командам\n" +

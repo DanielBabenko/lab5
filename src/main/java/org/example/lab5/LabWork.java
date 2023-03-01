@@ -4,6 +4,7 @@ import org.example.lab5.entity.Coordinates;
 import org.example.lab5.entity.Person;
 import org.example.lab5.entity.enums.Difficulty;
 
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -12,33 +13,31 @@ import java.util.Objects;
 
 public class LabWork {
 
-    private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates = new Coordinates(); //Поле не может быть null
-    // private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private int minimalPoint; //Значение поля должно быть больше 0
     private int tunedInWorks;
     private Difficulty difficulty; //Поле может быть null
     private Person author; //Поле не может быть null
 
-    private static long idCounter = 1;
+    private static int idCounter = 1;
 
-    public static synchronized long createID() {
+    public static synchronized int createID() {
         return idCounter++;
     }
 
 
     public LabWork(String name, int minimalPoint, int tunedInWorks, Difficulty difficulty, Coordinates coordinates, Person author) {
-        this.id = idCounter;
+        this.id = createID();
         this.name = Objects.requireNonNull(name);
         this.coordinates = Objects.requireNonNull(coordinates);
         this.minimalPoint = minimalPoint;
         this.author = Objects.requireNonNull(author);
         this.tunedInWorks = tunedInWorks; // I do not understand what is it
         this.difficulty = Objects.requireNonNull(difficulty);
-
-        // set up automatically
-        //this.creationDate = ZonedDateTime.now();
+        this.creationDate = ZonedDateTime.now();
     }
 
     public void setDifficulty(Difficulty diff) {

@@ -4,9 +4,14 @@ import org.example.lab5.Command;
 import org.example.lab5.ElementCommand;
 import org.example.lab5.LabWork;
 
-public class Add {
+public class Add extends Invoker {
 
     private ElementCommand add;
+    private static final String COMMAND_NAME = "add";
+
+    public static String getCommandName() {
+        return COMMAND_NAME;
+    }
 
     public Add(ElementCommand add){
         this.add = add;
@@ -14,5 +19,10 @@ public class Add {
 
     public void add(LabWork e){
         add.execute(e);
+    }
+
+    @Override
+    public void doCommand() {
+
     }
 }

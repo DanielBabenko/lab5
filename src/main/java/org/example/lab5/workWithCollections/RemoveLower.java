@@ -3,8 +3,13 @@ package org.example.lab5.workWithCollections;
 import org.example.lab5.ElementCommand;
 import org.example.lab5.LabWork;
 
-public class RemoveLower {
+public class RemoveLower extends Invoker {
     private ElementCommand removeLowerEl;
+    private static final String COMMAND_NAME = "remove_lower";
+
+    public static String getCommandName() {
+        return COMMAND_NAME;
+    }
 
     public RemoveLower(ElementCommand removeLowerEl) {
         this.removeLowerEl = removeLowerEl;
@@ -12,5 +17,10 @@ public class RemoveLower {
 
     public void removeLower(LabWork e) {
         removeLowerEl.execute(e);
+    }
+
+    @Override
+    public void doCommand() {
+
     }
 }
