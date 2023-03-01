@@ -84,7 +84,6 @@ public class App {
 
         Map<String, Invoker> commands = new HashMap<>();
         commands.put(a.getCommandName(),a);
-        commands.put(s.getCommandName(),s);
         commands.put(help.getCommandName(),help);
         commands.put(r.getCommandName(),r);
         commands.put(c.getCommandName(),c);
@@ -95,12 +94,14 @@ public class App {
         commands.put(greater.getCommandName(),greater);
         commands.put(lower.getCommandName(),lower);
         commands.put(update.getCommandName(),update);
+        commands.put(s.getCommandName(),s);
+        System.out.println("Рендер завершён");
 
-        /*try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String line;
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String line = reader.readLine();
             for(Map.Entry<String, Invoker> entry: commands.entrySet()) {
                 String key = entry.getKey();
-                if ((line = reader.readLine()).equals(key)){
+                if (line.equals(key)){
                     entry.getValue().doCommand();
                     break;
                 }
@@ -108,8 +109,6 @@ public class App {
 
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
-
-        s.show();
+        }
     }
 }

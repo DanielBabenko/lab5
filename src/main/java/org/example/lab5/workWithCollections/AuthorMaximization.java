@@ -20,6 +20,6 @@ public class AuthorMaximization extends Invoker{
 
     @Override
     public void doCommand() {
-
+        maxAuthorCommand.execute();
     }
 }

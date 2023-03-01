@@ -20,6 +20,6 @@ public class UniqueTiW extends Invoker {
 
     @Override
     public void doCommand() {
-
+        printTiW.execute();
     }
 }

@@ -21,6 +21,6 @@ public class Clear extends Invoker {
 
     @Override
     public void doCommand() {
-
+        clearUpCommand.execute();
     }
 }

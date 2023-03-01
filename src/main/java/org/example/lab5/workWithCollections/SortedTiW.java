@@ -20,6 +20,6 @@ public class SortedTiW extends Invoker{
 
     @Override
     public void doCommand() {
-
+        sortTiW.execute();
     }
 }
