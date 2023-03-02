@@ -6,9 +6,13 @@ import org.example.lab5.UpdateCommand;
 public class Update extends Invoker {
     public UpdateCommand updateEl;
     private static final String COMMAND_NAME = "update";
+    private static final String regex = "\\w*";
 
     public static String getCommandName() {
         return COMMAND_NAME;
+    }
+    public String getRegex() {
+        return regex;
     }
 
     public Update(UpdateCommand updateEl) {
@@ -20,7 +24,7 @@ public class Update extends Invoker {
     }
 
     @Override
-    public void doCommand() {
+    public void doCommand(String s) {
 
     }
 }

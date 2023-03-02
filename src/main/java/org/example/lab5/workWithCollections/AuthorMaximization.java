@@ -5,9 +5,13 @@ import org.example.lab5.Command;
 public class AuthorMaximization extends Invoker{
     private Command maxAuthorCommand;
     private static final String COMMAND_NAME = "max_by_author";
+    private static final String regex = null;
 
     public static String getCommandName() {
         return COMMAND_NAME;
+    }
+    public String getRegex() {
+        return regex;
     }
 
     public AuthorMaximization(Command maxAuthorCommand){
@@ -19,7 +23,7 @@ public class AuthorMaximization extends Invoker{
     }
 
     @Override
-    public void doCommand() {
+    public void doCommand(String s) {
         maxAuthorCommand.execute();
     }
 }

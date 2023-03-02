@@ -1,14 +1,17 @@
 package org.example.lab5.workWithCollections;
 
 import org.example.lab5.Command;
-import org.example.lab5.ElementCommand;
 
 public class Clear extends Invoker {
     private Command clearUpCommand;
     private static final String COMMAND_NAME = "clear";
+    private static final String regex = null;
 
     public static String getCommandName() {
         return COMMAND_NAME;
+    }
+    public String getRegex() {
+        return regex;
     }
 
     public Clear(Command clearUpCommand){
@@ -20,7 +23,7 @@ public class Clear extends Invoker {
     }
 
     @Override
-    public void doCommand() {
+    public void doCommand(String s) {
         clearUpCommand.execute();
     }
 }

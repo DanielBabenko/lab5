@@ -6,9 +6,13 @@ import org.example.lab5.LabWork;
 public class RemoveGreater extends Invoker{
     private ElementCommand removeGreaterEl;
     private static final String COMMAND_NAME = "remove_greater";
+    private static final String regex = "\\w*";
 
     public static String getCommandName() {
-        return COMMAND_NAME;
+        return COMMAND_NAME+" "+regex;
+    }
+    public String getRegex() {
+        return regex;
     }
 
     public RemoveGreater(ElementCommand removeGreaterEl) {
@@ -16,12 +20,12 @@ public class RemoveGreater extends Invoker{
     }
 
     public void removeGreater(LabWork e){
-        removeGreaterEl.execute(e);
+
     }
 
     @Override
-    public void doCommand() {
-
+    public void doCommand(String s) {
+        removeGreaterEl.execute(s);
     }
 }
 

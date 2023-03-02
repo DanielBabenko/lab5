@@ -1,7 +1,6 @@
 package org.example.lab5.workWithCollections;
 
 import org.example.lab5.ElementCommand;
-import org.example.lab5.LabWork;
 import org.example.lab5.parserFromJson.Root;
 
 public class RemoveLowerElementCommand implements ElementCommand {
@@ -12,7 +11,8 @@ public class RemoveLowerElementCommand implements ElementCommand {
     }
 
     @Override
-    public void execute(LabWork e) {
+    public void execute(String e) {
         root.removeLower(e);
     }
+
 }

@@ -5,6 +5,10 @@ import org.example.lab5.Command;
 public class Show extends Invoker{
     private Command showTheSummary;
     private static final String COMMAND_NAME = "show";
+    private static final String regex = null;
+    public String getRegex() {
+        return regex;
+    }
 
     public static String getCommandName() {
         return COMMAND_NAME;
@@ -19,7 +23,7 @@ public class Show extends Invoker{
     }
 
     @Override
-    public void doCommand() {
+    public void doCommand(String s) {
         showTheSummary.execute();
     }
 }

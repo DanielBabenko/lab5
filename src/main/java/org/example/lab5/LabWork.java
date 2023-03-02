@@ -95,7 +95,7 @@ public class LabWork {
     @Override
     public String toString() {
         return "id:" + id + "\n" +
-                "name:'" + name + "\n" +
+                "name:" + name + "\n" +
                 "coordinates:" + "\n" +
                 "[x=" + getCoordinates().getX() + "\n" +
                 "y=" + getCoordinates().getY() + "]" + "\n" +

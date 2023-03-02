@@ -6,9 +6,13 @@ import org.example.lab5.workWithCollections.Invoker;
 public class Help extends Invoker {
     private Command getHelpCommand;
     private static final String COMMAND_NAME = "help";
+    private static final String regex = null;
 
     public static String getCommandName() {
         return COMMAND_NAME;
+    }
+    public String getRegex() {
+        return regex;
     }
     public Help(Command getHelpCommand){
         this.getHelpCommand = getHelpCommand;
@@ -19,7 +23,7 @@ public class Help extends Invoker {
     }
 
     @Override
-    public void doCommand() {
+    public void doCommand(String s) {
         getHelpCommand.execute();
     }
 }

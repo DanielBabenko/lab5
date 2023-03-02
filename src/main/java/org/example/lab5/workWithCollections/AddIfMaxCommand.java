@@ -12,7 +12,7 @@ public class AddIfMaxCommand implements ElementCommand {
     }
 
     @Override
-    public void execute(LabWork e) {
-        root.addIfMax(e);
+    public void execute(String e) {
+        //root.addIfMax(e);
     }
 }

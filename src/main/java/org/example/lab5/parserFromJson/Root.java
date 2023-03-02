@@ -1,8 +1,15 @@
 package org.example.lab5.parserFromJson;
 
 import org.example.lab5.LabWork;
+import org.example.lab5.entity.Coordinates;
 import org.example.lab5.entity.Person;
+import org.example.lab5.entity.enums.Color;
+import org.example.lab5.entity.enums.Difficulty;
+import org.example.lab5.parserToJson.ParserToJson;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Root {
@@ -59,8 +66,58 @@ public class Root {
         }
     }
 
-    public void addElement(LabWork e) {
+    public void addElement(String name) throws IOException {
+        Coordinates coordinates = addCoordinates();
+        Person author = addPerson();
+        int minimalPoint = addMinimalPoint();
+        int tunedInWorks = addTunedInWorks();
+        Difficulty difficulty = addDifficulty();
+        LabWork e = new LabWork(name,minimalPoint,tunedInWorks,difficulty,coordinates,author);
         labWorkSet.add(e);
+    }
+
+    private static int addMinimalPoint() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите minimalPoint:");
+        int minimalPoint = Integer.parseInt(reader.readLine());
+        return minimalPoint;
+    }
+
+    private static int addTunedInWorks() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите tuned in works:");
+        int tunedInWorks = Integer.parseInt(reader.readLine());
+        return tunedInWorks;
+    }
+
+    private static Coordinates addCoordinates() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите координату x:");
+        int x = Integer.parseInt(reader.readLine());
+        System.out.println("Введите координату y:");
+        double y = Double.parseDouble(reader.readLine());
+
+        return new Coordinates(x, y);
+    }
+
+    private static Difficulty addDifficulty() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите сложность работы:");
+        String difficulty = reader.readLine();
+        return Difficulty.valueOf(difficulty);
+    }
+
+    private static Person addPerson() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите имя автора: ");
+        String name = reader.readLine();
+        System.out.println("Введите рост автора: ");
+        float height = Float.parseFloat(reader.readLine());
+        System.out.println("Введите дату рождения автора: ");
+        String birthday = reader.readLine();
+        System.out.println("Введите цвет глаз автора (): ");
+        String color = reader.readLine();
+        return new Person(name, Color.valueOf(color), height, birthday);
     }
 
     public void removeEl(int id) {
@@ -145,24 +202,24 @@ public class Root {
         }
     }
 
-    public void removeGreater(LabWork e){
-        List<LabWork> labWorks = new LinkedList<>();
-        for (LabWork lab: labWorkSet){
-            labWorks.add(lab);
-        }
-        labWorks.sort(compareByMinPointReverse);
-        for (LabWork el:labWorks) {
-            if(el == e){break;}
+    public void removeGreater(String e){
+        List<LabWork> labWorkList = new ArrayList<>();
+        labWorkList.addAll(labWorkSet);
+        labWorkList.sort(compareByMinPointReverse);
+
+        for (LabWork el:labWorkList) {
+            if(el.getName().equals(e)){break;}
             labWorkSet.remove(el);
         }
     }
 
-    public void removeLower(LabWork e){
+    public void removeLower(String e){
         List<LabWork> labWorkList = new ArrayList<>();
         labWorkList.addAll(labWorkSet);
         labWorkList.sort(compareByMinPoint);
+
         for (LabWork el:labWorkList) {
-            if(el == e){break;}
+            if(el.getName().equals(e)){break;}
             labWorkSet.remove(el);
         }
     }

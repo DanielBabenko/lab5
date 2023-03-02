@@ -10,10 +10,8 @@ public class RemoveGreaterElementCommand implements ElementCommand {
         this.root = root;
     }
 
-    public void execute() {}
-
     @Override
-    public void execute(LabWork e) {
+    public void execute(String e) {
         root.removeGreater(e);
     }
 }

@@ -1,29 +1,29 @@
 package org.example.lab5.workWithCollections;
 
 import org.example.lab5.ElementCommand;
-import org.example.lab5.LabWork;
-
-import java.util.regex.Pattern;
 
 public class RemoveLower extends Invoker {
     private ElementCommand removeLowerEl;
     private static final String COMMAND_NAME = "remove_lower";
-    String regex = "\\w*";
+    private static final String regex = "\\w*";
 
     public static String getCommandName() {
-        return COMMAND_NAME;
+        return COMMAND_NAME+" "+regex;
+    }
+    public String getRegex() {
+        return regex;
     }
 
     public RemoveLower(ElementCommand removeLowerEl) {
         this.removeLowerEl = removeLowerEl;
     }
 
-    public void removeLower(LabWork e) {
+    public void removeLower(String e) {
         removeLowerEl.execute(e);
     }
 
     @Override
-    public void doCommand() {
-
+    public void doCommand(String s) {
+        removeLowerEl.execute(s);
     }
 }
