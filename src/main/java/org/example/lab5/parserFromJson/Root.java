@@ -76,6 +76,19 @@ public class Root {
         labWorkSet.add(e);
     }
 
+    public void addIfMax(String name) throws IOException{
+        Coordinates coordinates = addCoordinates();
+        Person author = addPerson();
+        int minimalPoint = addMinimalPoint();
+        int tunedInWorks = addTunedInWorks();
+        Difficulty difficulty = addDifficulty();
+        LabWork e = new LabWork(name,minimalPoint,tunedInWorks,difficulty,coordinates,author);
+        LabWork maximum = Collections.max(labWorkSet,compareByMinPoint);
+        if ((e.getMinimalPoint() - maximum.getMinimalPoint()) > 0){
+            labWorkSet.add(e);
+        }
+    }
+
     private static int addMinimalPoint() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите minimalPoint:");
@@ -193,13 +206,6 @@ public class Root {
         System.out.println("Дата рождения: " + greatest.getBirthday());
         System.out.println("Рост: " + greatest.getHeight());
         System.out.println("Цвет глаз: " + greatest.getEyeColor());
-    }
-
-    public void addIfMax(LabWork e) {
-        LabWork maximum = Collections.max(labWorkSet,compareByMinPoint);
-        if ((e.getMinimalPoint() - maximum.getMinimalPoint()) > 0){
-            labWorkSet.add(e);
-        }
     }
 
     public void removeGreater(String e){

@@ -25,6 +25,6 @@ public class AddIfMax extends Invoker {
 
     @Override
     public void doCommand(String s) {
-
+        addMax.execute(s);
     }
 }
