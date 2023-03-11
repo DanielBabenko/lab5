@@ -1,22 +1,21 @@
-package org.example.lab5.workWithCollections;
+package org.example.lab5.commands;
 
 import org.example.lab5.ElementCommand;
-import org.example.lab5.LabWork;
 import org.example.lab5.parserFromJson.Root;
 
 import java.io.IOException;
 
-public class AddIfMaxCommand implements ElementCommand {
+public class AddNewElementCommand implements ElementCommand {
     private Root root;
-
-    public AddIfMaxCommand(Root root){
+    public AddNewElementCommand(Root root){
         this.root = root;
     }
 
-    @Override
+    public void execute() {}
+
     public void execute(String e) {
         try {
-            root.addIfMax(e);
+            root.addElement(e);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

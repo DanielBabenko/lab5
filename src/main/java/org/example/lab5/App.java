@@ -7,7 +7,7 @@ import org.example.lab5.exceptions.InvalidFieldY;
 import org.example.lab5.exceptions.NullX;
 import org.example.lab5.exceptions.WrongCommandInputException;
 import org.example.lab5.parserFromJson.Root;
-import org.example.lab5.workWithCollections.*;
+import org.example.lab5.commands.*;
 import org.example.lab5.parserToJson.ParserToJson;
 
 import java.io.BufferedReader;

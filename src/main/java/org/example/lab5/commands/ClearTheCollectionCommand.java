@@ -1,7 +1,6 @@
-package org.example.lab5.workWithCollections;
+package org.example.lab5.commands;
 
 import org.example.lab5.Command;
-import org.example.lab5.LabWork;
 import org.example.lab5.parserFromJson.Root;
 
 public class ClearTheCollectionCommand implements Command {

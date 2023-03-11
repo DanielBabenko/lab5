@@ -1,10 +1,7 @@
-package org.example.lab5.workWithCollections;
+package org.example.lab5.commands;
 
 import org.example.lab5.Command;
-import org.example.lab5.LabWork;
 import org.example.lab5.parserFromJson.Root;
-
-import java.util.HashSet;
 
 public class ShowTheCollectionCommand implements Command {
     private Root root;
